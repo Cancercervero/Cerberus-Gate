@@ -1,0 +1,25 @@
+# Variables de Entorno (CRÍTICO: NO SUBIR A GITHUB)
+.env
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos Virtuales
+venv/
+env/
+ENV/
+
+# Archivos temporales locales de Cerberus Gate
+server_log.txt
+server_error.txt
+
+# Archivos extremadamente pesados (Modelos Locales GGUF / ONNX)
+*.gguf
+*.onnx
+
+# Artefactos locales de Whisper / TTS (opcional, pero pesan mucho)
+whisper_models/
+ui_core/voices/
+ui_core/whisper_models/

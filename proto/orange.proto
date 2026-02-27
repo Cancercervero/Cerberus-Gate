@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package orange;
+
+// El servicio de Inferencia "Músculo Tonto", "Aduana" y "Bóveda" (Host Windows)
+service OrangeInference {
+    // Recibe texto y parámetros, devuelve la respuesta pura generada por Qwen
+    rpc RunDeduction (InferenceRequest) returns (InferenceResponse);
+    
+    // FASE 2.1: El Espejo (Perfilado Cognitivo)
+    rpc UpdateUserProfile (ProfileData) returns (ProfileResponse);
+    
+    // FASE 3: La Aduana (Ejecución Autorizada y Sistema Inmune)
+    rpc RequestAction (ActionPayload) returns (ActionResponse);
+    
+    // PILAR 4: La Pecera Executor (Reverse RPC de Windows a Linux)
+    rpc ExecutePythonCode (PythonCodeRequest) returns (PythonCodeResponse);
+    
+    // FASE 2.8: El Diario de Guerra (Compilación de Markdown)
+    rpc CompileDailyDigest (DigestRequest) returns (DigestResponse);
+}
+
+message InferenceRequest {
+    string prompt = 1;
+    int32 max_tokens = 2; // Límite de tokens a generar, ej: 1024
+    float temperature = 3; // Nivel de aleatoriedad, ej: 0.7
+}
+
+message InferenceResponse {
+    string text = 1; // La respuesta pura generada por el modelo
+    int32 prompt_tokens = 2; // Estadísticas de uso
+    int32 completion_tokens = 3; // Estadísticas de uso
+}
+
+message ProfileData {
+    string complexity_level = 1; // Ej: "AVANZADO", "PRINCIPIANTE"
+    string tone = 2;             // Ej: "DIRECTO", "DIDÁCTICO"
+    repeated string interests = 3; // Lista de temas, ej: ["Ciberseguridad", "Arquitectura Zero-Trust"]
+    string raw_data_vector = 4;  // Resumen vectorial o semántico
+}
+
+message ProfileResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message ActionPayload {
+    string action_type = 1; // Ej: "SYSTEM_COMMAND", "FILE_READ"
+    string command = 2;     // Ej: "rm -rf /", "dir C:\\"
+    string reason = 3;      // Justificación del Cerebro para ejecutar la acción
+}
+
+message ActionResponse {
+    bool authorized = 1;    // Veredicto de la Aduana / Usuario
+    bool immune_triggered = 2; // True si se detectó código malicioso y se destruyó el contenedor
+    string output = 3;      // Resultado del comando si fue exitoso
+    string error_message = 4; // Razón de denegación o error
+}
+
+message PythonCodeRequest {
+    string code = 1; // El bloque puro de Python extraido por Gemini
+}
+
+message PythonCodeResponse {
+    string stdout = 1; // La captura stdout y stderr tras la aislada ejecución
+}
+
+message DigestRequest {
+    string date = 1; // "2026_02_23"
+}
+
+message DigestResponse {
+    bool success = 1;
+    string message = 2; // "Diario de Guerra compilado y asegurado en la Bóveda."
+}

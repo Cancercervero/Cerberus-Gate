@@ -1,0 +1,417 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-card: rgba(20, 20, 25, 0.6);
+    --border-glow: rgba(255, 140, 0, 0.3);
+    --accent-orange: #ff8c00;
+    --accent-orange-bright: #ffa500;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* CYBERPUNK BACKGROUND GRID */
+.background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image:
+        linear-gradient(rgba(255, 140, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 140, 0, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+    animation: gridMove 20s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 50px;
+    }
+}
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-family: var(--font-heading);
+    z-index: 100;
+}
+
+.lang-toggle a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 5px;
+    transition: color 0.3s;
+    font-weight: 600;
+}
+
+.lang-toggle a:hover {
+    color: var(--accent-orange);
+}
+
+.lang-toggle a.active {
+    color: var(--accent-orange);
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+}
+
+.logo-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 0 50px var(--border-glow);
+    animation: floating 4s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+.orbe-glow {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 140, 0, 0.4) 0%, rgba(255, 140, 0, 0) 70%);
+    top: -10%;
+    left: -10%;
+    z-index: 1;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* GLITCH EFFECT */
+.glitch {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    color: white;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 blue;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(2px, 9999px, 86px, 0);
+    }
+
+    20% {
+        clip: rect(42px, 9999px, 16px, 0);
+    }
+
+    40% {
+        clip: rect(12px, 9999px, 66px, 0);
+    }
+
+    60% {
+        clip: rect(72px, 9999px, 4px, 0);
+    }
+
+    80% {
+        clip: rect(22px, 9999px, 96px, 0);
+    }
+
+    100% {
+        clip: rect(62px, 9999px, 36px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 100px, 0);
+    }
+
+    20% {
+        clip: rect(15px, 9999px, 20px, 0);
+    }
+
+    40% {
+        clip: rect(45px, 9999px, 80px, 0);
+    }
+
+    60% {
+        clip: rect(85px, 9999px, 40px, 0);
+    }
+
+    80% {
+        clip: rect(5px, 9999px, 60px, 0);
+    }
+
+    100% {
+        clip: rect(25px, 9999px, 10px, 0);
+    }
+}
+
+.subtitle {
+    font-family: var(--font-heading);
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+/* BUTTONS */
+.cta-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: transparent;
+    color: var(--accent-orange);
+    border: 1px solid var(--accent-orange);
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.2), inset 0 0 10px rgba(255, 140, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: var(--accent-orange);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* PILLARS GRID SECTION */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* GLASSMORPHISM CARDS */
+.pillar-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--border-glow);
+    border-color: rgba(255, 140, 0, 0.2);
+}
+
+.pillar-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pillar-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pillar-card h4 {
+    font-family: var(--font-heading);
+    color: var(--accent-orange);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pillar-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.footer-content {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.status {
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.online {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .cta-container {
+        flex-direction: column;
+    }
+}
